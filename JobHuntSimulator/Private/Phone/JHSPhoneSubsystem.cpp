@@ -6,18 +6,18 @@
 void UJHSPhoneSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	UE_LOG(LogTemp, Warning, TEXT("PhoneSubsystem initialized for LocalPlayer"));
 	
 }
 
 void UJHSPhoneSubsystem::Deinitialize()
 {
 	Super::Deinitialize();
-	UE_LOG(LogTemp, Warning, TEXT("PhoneSubsystem deinitialized for LocalPlayer"));
+	
 }
 
 void UJHSPhoneSubsystem::OpenPhone()
 {
+	IsPhoneOpen = true;
 	UE_LOG(LogTemp, Warning, TEXT("Open Phone"));
 
 	if(AppsClassArray.IsEmpty())
@@ -51,22 +51,10 @@ void UJHSPhoneSubsystem::OpenPhone()
 		UE_LOG(LogTemp, Warning, TEXT("AppId: %d"), App->AppData->BaseAppData.AppID);
 		UE_LOG(LogTemp, Warning, TEXT("App name: %s"), *App->AppData->BaseAppData.AppName.ToString());
 	}
-
-	
 }
 
 void UJHSPhoneSubsystem::ClosePhone()
 {
+	IsPhoneOpen = false;
 	UE_LOG(LogTemp, Warning, TEXT("Close Phone"));
-}
-
-void UJHSPhoneSubsystem::OpenApp()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Open App"));
-}
-
-void UJHSPhoneSubsystem::CloseApp()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Close App"));
-	
 }

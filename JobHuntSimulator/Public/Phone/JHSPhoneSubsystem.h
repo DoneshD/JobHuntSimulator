@@ -17,6 +17,8 @@ public:
 	UPROPERTY()
 	TArray<TSubclassOf<UJHSApp>> AppsClassArray;
 
+	bool IsPhoneOpen = false;
+
 protected:
 	
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
@@ -29,12 +31,6 @@ public:
 
 	UFUNCTION()
 	void ClosePhone();
-
-	UFUNCTION()
-	void OpenApp();
-
-	UFUNCTION()
-	void CloseApp();
 	
 };
 

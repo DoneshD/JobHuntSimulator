@@ -88,7 +88,6 @@ void AJobHuntSimulatorCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::Look);
 
 		EnhancedInputComponent->BindAction(TogglePhoneAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::TogglePhone);
-		EnhancedInputComponent->BindAction(ToggleAppAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::ToggleApp);
 	}
 	else
 	{
@@ -149,28 +148,14 @@ void AJobHuntSimulatorCharacter::TogglePhone(const FInputActionValue& Value)
 		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid phone subsystem"))
 		return;
 	}
-	
-	PhoneSubsystem->OpenPhone();
-	
-}
 
-void AJobHuntSimulatorCharacter::ToggleApp(const FInputActionValue& Value)
-{
-	APlayerController* PC = Cast<APlayerController>(Controller);
-
-	if(!PC && !PC->IsValidLowLevel())
+	if(PhoneSubsystem->IsPhoneOpen)
 	{
-		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid Player Controller"))
-		return;
+		PhoneSubsystem->ClosePhone();
+	}
+	else
+	{
+		PhoneSubsystem->OpenPhone();
 	}
 	
-	UJHSPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UJHSPhoneSubsystem>();
-	
-	if(!PhoneSubsystem || !PhoneSubsystem->IsValidLowLevel())
-	{
-		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid phone subsystem"))
-		return;
-	}
-	
-	PhoneSubsystem->ClosePhone();
 }

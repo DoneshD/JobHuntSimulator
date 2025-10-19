@@ -46,9 +46,7 @@ class AJobHuntSimulatorCharacter : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* TogglePhoneAction;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* ToggleAppAction;
+
 
 
 public:
@@ -65,7 +63,6 @@ protected:
 
 	//Testing phone and app inputs
 	void TogglePhone(const FInputActionValue& Value);
-	void ToggleApp(const FInputActionValue& Value);
 
 protected:
 
