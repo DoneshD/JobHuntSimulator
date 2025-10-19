@@ -1,0 +1,1 @@
+#include "Apps/JHSAppMetaData.h"

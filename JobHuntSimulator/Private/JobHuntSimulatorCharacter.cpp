@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Phone/JHSPhoneSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -85,6 +86,8 @@ void AJobHuntSimulatorCharacter::SetupPlayerInputComponent(UInputComponent* Play
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::Look);
+
+		EnhancedInputComponent->BindAction(TogglePhoneAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::TogglePhone);
 	}
 	else
 	{
@@ -126,4 +129,33 @@ void AJobHuntSimulatorCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AJobHuntSimulatorCharacter::TogglePhone(const FInputActionValue& Value)
+{
+	APlayerController* PC = Cast<APlayerController>(Controller);
+
+	if(!PC && !PC->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid Player Controller"))
+		return;
+	}
+	
+	UJHSPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UJHSPhoneSubsystem>();
+	
+	if(!PhoneSubsystem || !PhoneSubsystem->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid phone subsystem"))
+		return;
+	}
+
+	if(PhoneSubsystem->IsPhoneOpen)
+	{
+		PhoneSubsystem->ClosePhone();
+	}
+	else
+	{
+		PhoneSubsystem->OpenPhone();
+	}
+	
 }
