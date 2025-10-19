@@ -14,4 +14,6 @@ AJobHuntSimulatorGameMode::AJobHuntSimulatorGameMode()
 void AJobHuntSimulatorGameMode::InitGameState()
 {
 	Super::InitGameState();
+
+	
 }

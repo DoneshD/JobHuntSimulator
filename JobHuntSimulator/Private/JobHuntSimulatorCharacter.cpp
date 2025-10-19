@@ -134,9 +134,43 @@ void AJobHuntSimulatorCharacter::Look(const FInputActionValue& Value)
 
 void AJobHuntSimulatorCharacter::TogglePhone(const FInputActionValue& Value)
 {
+	APlayerController* PC = Cast<APlayerController>(Controller);
+
+	if(!PC && !PC->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid Player Controller"))
+		return;
+	}
+	
+	UPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UPhoneSubsystem>();
+	
+	if(!PhoneSubsystem || !PhoneSubsystem->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid phone subsystem"))
+		return;
+	}
+	
+	PhoneSubsystem->OpenPhone();
 	
 }
 
 void AJobHuntSimulatorCharacter::ToggleApp(const FInputActionValue& Value)
 {
+	APlayerController* PC = Cast<APlayerController>(Controller);
+
+	if(!PC && !PC->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid Player Controller"))
+		return;
+	}
+	
+	UPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UPhoneSubsystem>();
+	
+	if(!PhoneSubsystem || !PhoneSubsystem->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorCharacter::TogglePhone - Invalid phone subsystem"))
+		return;
+	}
+	
+	PhoneSubsystem->ClosePhone();
 }
