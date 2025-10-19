@@ -1,5 +1,5 @@
 #include "JobHuntSimulatorGameMode.h"
-#include "JobHuntSimulatorCharacter.h"
+#include "Phone/JHSPhoneSubsystem.h"
 #include "UObject/ConstructorHelpers.h"
 
 AJobHuntSimulatorGameMode::AJobHuntSimulatorGameMode()
@@ -14,6 +14,21 @@ AJobHuntSimulatorGameMode::AJobHuntSimulatorGameMode()
 void AJobHuntSimulatorGameMode::InitGameState()
 {
 	Super::InitGameState();
-
 	
+}
+
+void AJobHuntSimulatorGameMode::PostLogin(APlayerController* NewPlayer)
+{
+	Super::PostLogin(NewPlayer);
+
+
+	if(!NewPlayer && !NewPlayer->IsValidLowLevel())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AJobHuntSimulatorGameMode::PostLogin - Invalid Player Controller"))
+		return;
+	}
+	
+	UJHSPhoneSubsystem* PhoneSubsystem = NewPlayer->GetLocalPlayer()->GetSubsystem<UJHSPhoneSubsystem>();
+	
+	// PhoneSubsystem->AppsArray = AppsArray;
 }

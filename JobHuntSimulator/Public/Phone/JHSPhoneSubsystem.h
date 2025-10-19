@@ -2,13 +2,18 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/LocalPlayerSubsystem.h"
-#include "PhoneSubsystem.generated.h"
+#include "JHSPhoneSubsystem.generated.h"
 
 
 UCLASS()
-class JOBHUNTSIMULATOR_API UPhoneSubsystem : public ULocalPlayerSubsystem
+class JOBHUNTSIMULATOR_API UJHSPhoneSubsystem : public ULocalPlayerSubsystem
 {
 	GENERATED_BODY()
+
+public:
+
+	// UPROPERTY()
+	// TArray<TObjectPtr<UApp>> AppsArray;
 
 protected:
 	
@@ -30,3 +35,4 @@ public:
 	void CloseApp();
 	
 };
+

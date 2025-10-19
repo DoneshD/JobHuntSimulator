@@ -10,7 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "Phone/PhoneSubsystem.h"
+#include "Phone/JHSPhoneSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -142,7 +142,7 @@ void AJobHuntSimulatorCharacter::TogglePhone(const FInputActionValue& Value)
 		return;
 	}
 	
-	UPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UPhoneSubsystem>();
+	UJHSPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UJHSPhoneSubsystem>();
 	
 	if(!PhoneSubsystem || !PhoneSubsystem->IsValidLowLevel())
 	{
@@ -164,7 +164,7 @@ void AJobHuntSimulatorCharacter::ToggleApp(const FInputActionValue& Value)
 		return;
 	}
 	
-	UPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UPhoneSubsystem>();
+	UJHSPhoneSubsystem* PhoneSubsystem = PC->GetLocalPlayer()->GetSubsystem<UJHSPhoneSubsystem>();
 	
 	if(!PhoneSubsystem || !PhoneSubsystem->IsValidLowLevel())
 	{
