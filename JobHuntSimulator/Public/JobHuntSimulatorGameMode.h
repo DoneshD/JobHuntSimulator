@@ -13,6 +13,8 @@ class AJobHuntSimulatorGameMode : public AGameModeBase
 
 public:
 	AJobHuntSimulatorGameMode();
+
+	virtual void InitGameState() override;
 };
 
 

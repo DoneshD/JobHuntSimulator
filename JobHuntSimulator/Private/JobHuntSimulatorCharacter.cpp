@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Phone/PhoneSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -85,6 +86,9 @@ void AJobHuntSimulatorCharacter::SetupPlayerInputComponent(UInputComponent* Play
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::Look);
+
+		EnhancedInputComponent->BindAction(TogglePhoneAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::TogglePhone);
+		EnhancedInputComponent->BindAction(ToggleAppAction, ETriggerEvent::Triggered, this, &AJobHuntSimulatorCharacter::ToggleApp);
 	}
 	else
 	{
@@ -126,4 +130,13 @@ void AJobHuntSimulatorCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AJobHuntSimulatorCharacter::TogglePhone(const FInputActionValue& Value)
+{
+	
+}
+
+void AJobHuntSimulatorCharacter::ToggleApp(const FInputActionValue& Value)
+{
 }
