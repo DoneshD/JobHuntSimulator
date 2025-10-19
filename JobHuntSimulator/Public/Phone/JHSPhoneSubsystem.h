@@ -5,6 +5,8 @@
 #include "JHSPhoneSubsystem.generated.h"
 
 
+class UJHSApp;
+
 UCLASS()
 class JOBHUNTSIMULATOR_API UJHSPhoneSubsystem : public ULocalPlayerSubsystem
 {
@@ -12,8 +14,8 @@ class JOBHUNTSIMULATOR_API UJHSPhoneSubsystem : public ULocalPlayerSubsystem
 
 public:
 
-	// UPROPERTY()
-	// TArray<TObjectPtr<UApp>> AppsArray;
+	UPROPERTY()
+	TArray<TSubclassOf<UJHSApp>> AppsClassArray;
 
 protected:
 	

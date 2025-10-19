@@ -13,7 +13,7 @@ class AJobHuntSimulatorGameMode : public AGameModeBase
 
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "JobHuntSimulator")
-	TArray<TObjectPtr<UJHSApp>> AppsArray;
+	TArray<TSubclassOf<UJHSApp>> AppsClassArray;
 
 public:
 	

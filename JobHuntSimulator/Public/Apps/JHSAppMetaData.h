@@ -4,12 +4,10 @@
 #include "Engine/DataAsset.h"
 #include "JHSAppMetaData.generated.h"
 
-UCLASS()
-class JOBHUNTSIMULATOR_API UJHSAppMetaData : public UPrimaryDataAsset
+USTRUCT()
+struct FBaseAppData
 {
 	GENERATED_BODY()
-
-public:
 
 	UPROPERTY(EditDefaultsOnly)
 	int32 AppID;
@@ -18,9 +16,35 @@ public:
 	FName AppName;
 
 	UPROPERTY(EditDefaultsOnly)
-	FName AppDisplayName;
+	FString AppDescription;
+	
+};
+
+USTRUCT()
+struct FAppDisplayData
+{
+	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly)
-	FString AppDescription;
+	FName DisplayName;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UUserWidget> DisplayWidgetClass;
+	
+};
+
+
+UCLASS()
+class JOBHUNTSIMULATOR_API UJHSAppMetaData : public UPrimaryDataAsset
+{
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(EditDefaultsOnly)
+	FBaseAppData BaseAppData;
+
+	UPROPERTY(EditDefaultsOnly)
+	FAppDisplayData AppDisplayData;
 	
 };

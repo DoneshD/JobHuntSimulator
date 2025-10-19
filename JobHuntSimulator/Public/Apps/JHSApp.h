@@ -6,13 +6,13 @@
 
 class UJHSAppMetaData;
 
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class JOBHUNTSIMULATOR_API UJHSApp : public UObject
 {
 	GENERATED_BODY()
 
 public:
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UJHSAppMetaData> AppData;
 };
